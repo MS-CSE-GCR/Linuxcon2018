@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Query</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Classify your image</h1>
+
+	<form action="#" th:action="@{/doquery}" th:object="${imagefile}"
+		method="post">
+		<p>
+		Image URL: <input type="text" id="urltext" size="100" autocomplete="on" th:field="*{fileURL}" />
+		</p>
+		<p>
+			<input type="submit" value="Submit" onClick="this.form.submit(); this.disabled=true; this.value='Processing…';" />
+			<input type="button" value="Clear" onClick="document.getElementById('urltext').value = ''"/>
+		</p>
+	</form>
+	<!-- 
+	<p
+		th:text="'File URL: ' + ${imagefile.fileURL!=null}?${imagefile.fileURL}" />
+	 -->
+	 
+	 <table border= "0">
+  <tr>
+    <td><img th:src="${imagefile.fileURL!=null}?${imagefile.fileURL}" /></td>
+    <td><pre th:text="${imagefile.result!=null}?${imagefile.result}"></pre></td>
+  </tr>
+</table>
+	
+
+</body>
+</html>
